@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+    <title>im体育 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5fafc;
+            color: #1a2e3a;
+            line-height: 1.6;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉 – 信息卡片式 Hero */
+        .hero-card {
+            background: linear-gradient(135deg, #154b5c 0%, #1b6d7a 100%);
+            border-radius: 28px;
+            padding: 40px 28px 36px;
+            color: #e8f5f0;
+            margin-bottom: 32px;
+            box-shadow: 0 12px 28px -8px rgba(16, 80, 80, 0.18);
+            transition: box-shadow 0.2s;
+        }
+
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .hero-card .tagline {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 18px;
+            color: #cde6e3;
+        }
+
+        .hero-card p {
+            font-size: 1rem;
+            max-width: 680px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .hero-card .guide-note {
+            margin-top: 14px;
+            padding: 14px 20px;
+            background: rgba(0, 0, 0, 0.14);
+            border-left: 4px solid #7fcbcb;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        /* 网格卡片 – 用途卡片 + 适合人群 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 22px 26px;
+            box-shadow: 0 6px 18px rgba(0, 40, 40, 0.04);
+            border: 1px solid #daeef2;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(18, 98, 104, 0.07);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            background: #e5f3f5;
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 18px;
+            color: #136c7a;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #124e5c;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #cae3e7;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #1f3b44;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 12px;
+        }
+
+        .card li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: "▹";
+            color: #2b9b9b;
+            font-weight: bold;
+            left: 0;
+            position: absolute;
+        }
+
+        /* 单一宽卡片 – 自然链接段落 & 提醒 */
+        .feature-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px;
+            margin-bottom: 24px;
+            border: 1px solid #d2e9ed;
+            box-shadow: 0 4px 12px rgba(0, 60, 60, 0.02);
+        }
+
+        .feature-block h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b4d59;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-block p {
+            margin-bottom: 14px;
+        }
+
+        .feature-block a {
+            color: #136c7a;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #9fd0d4;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .feature-block a:hover {
+            border-bottom-color: #0b5d6b;
+            color: #0a515e;
+        }
+
+        .reminder-note {
+            background: #e5f2f0;
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-top: 16px;
+            border-left: 6px solid #2b8f8f;
+            color: #1c404a;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .reminder-note span {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        /* FAQ 摘要 – 简洁网格 */
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .faq-item {
+            background: #f0f8fa;
+            padding: 16px 18px;
+            border-radius: 20px;
+            border: 1px solid #c5e2e6;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: #104c59;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #1a3f48;
+            margin: 0;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5d7a7e;
+            border-top: 1px solid #cde0e2;
+            padding-top: 20px;
+        }
+
+        /* 移动端友好 */
+        @media (max-width: 680px) {
+            .hero-card h1 {
+                font-size: 1.8rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .faq-mini {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .hero-card {
+                padding: 30px 20px 28px;
+            }
+
+            .card, .feature-block {
+                padding: 20px 18px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 12px 10px 30px;
+            }
+
+            .hero-card h1 {
+                font-size: 1.55rem;
+            }
+
+            .reminder-note {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉卡片（简明指南入口） -->
+    <div class="hero-card">
+        <div class="tagline">📘 信息卡片 · 知识向</div>
+        <h1>im体育 · 从认识开始</h1>
+        <p>体育资讯与互动平台的选择，值得一份简明指南。下文从用途、场景到访问提醒，帮你快速建立认知框架。</p>
+        <div class="guide-note">
+            ⚡ 新用户建议：先了解平台定位与基础功能，再根据自身兴趣探索。下文卡片收纳了核心用途、适合人群及实用提示。
+        </div>
+    </div>
+
+    <!-- 网格：用途卡片 + 适合人群 -->
+    <div class="grid-2col">
+        <!-- 用途卡片 -->
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>用途卡片</h3>
+            <p>作为体育内容聚合与基础工具型平台，im体育 主要提供以下方向：</p>
+            <ul>
+                <li>体育赛事动态、数据与资讯浏览</li>
+                <li>多元运动社区讨论与观点分享</li>
+                <li>基础工具：赛程、排名、统计面板</li>
+                <li>个性化关注：战队、联赛、运动员</li>
+            </ul>
+        </div>
+
+        <!-- 适合人群 -->
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>适合人群</h3>
+            <p>不论你是以下哪一类用户，都能找到对应场景：</p>
+            <ul>
+                <li><strong>日常体育迷</strong> – 快速获取赛果与资讯</li>
+                <li><strong>数据分析型</strong> – 关注数据面板与历史对比</li>
+                <li><strong>社区交流者</strong> – 参与讨论、分享观点</li>
+                <li><strong>泛运动关注者</strong> – 从主流联赛到小众项目</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + 访问提醒 (蓝绿色点缀) -->
+    <div class="feature-block">
+        <h2>🏟️ 平台定位与自然衔接</h2>
+        <p>
+            从工具属性来看，<a href="https://app-imsport.com">im体育</a> 的设计初衷是降低体育信息获取门槛，让用户更专注于内容本身。无论是赛前前瞻、实时数据还是赛后复盘，平台都试图以清晰的模块呈现。
+        </p>
+        <p>
+            对初次接触者，建议先浏览热门版块与默认信息流，再根据自己的兴趣定制关注列表。这种渐进式探索能减少信息过载，也能更快找到你真正关心的联赛或队伍。
+        </p>
+
+        <!-- 提醒（蓝绿色点缀） -->
+        <div class="reminder-note">
+            <span>🧭</span>
+            <div>
+                <strong style="color: #0b525b;">访问提醒</strong><br>
+                使用任何体育平台时，请留意个人隐私与账户安全。建议通过官方域名 <a href="https://app-imsport.com" style="border-bottom: 2px solid #82c2c2;">im体育</a> 直接访问，同时注意浏览器地址栏的拼写与证书状态。平台内公开信息可供浏览，但涉及个人设置或互动功能时，请保持基本的网络安全意识。
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要卡片 (双列，蓝绿色调) -->
+    <div class="feature-block" style="margin-bottom: 16px;">
+        <h2>❓ 常见疑问 · 摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>需要注册才能浏览吗？</strong>
+                <p>部分公开内容（赛事动态、资讯）无需登录即可查阅；个性化功能如关注、评论则建议注册账户。</p>
+            </div>
+            <div class="faq-item">
+                <strong>移动端适配如何？</strong>
+                <p>界面采用响应式设计，手机与平板均可获得良好浏览体验，建议保持系统及浏览器更新。</p>
+            </div>
+            <div class="faq-item">
+                <strong>平台支持哪些体育项目？</strong>
+                <p>覆盖足球、篮球、网球、电竞等主流项目，并逐渐扩展至橄榄球、综合格斗等小众领域。</p>
+            </div>
+            <div class="faq-item">
+                <strong>信息更新频率？</strong>
+                <p>赛事数据与新闻基本实时或准实时更新，具体取决于数据源与比赛类型。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自然闭合段落 (再次嵌入链接) -->
+    <div style="background: #ffffff; border-radius: 24px; padding: 22px 24px; border: 1px solid #d5eaee; margin-top: 6px;">
+        <p style="margin-bottom: 0; font-size: 0.98rem;">
+            📎 延伸阅读：如果你希望从一个信息结构清晰、社区氛围友好的体育平台开始，<a href="https://app-imsport.com">im体育</a> 的首页布局与分类导航值得花几分钟熟悉。逐步建立自己的信息流，往往比一次性关注大量内容更有效。
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        im体育 · 信息卡片式介绍 · 内容基于公开知识与合理整理<br>
+        仅供了解与参考，不构成任何使用承诺。
+    </div>
+
+</div>
+</body>
+</html>
